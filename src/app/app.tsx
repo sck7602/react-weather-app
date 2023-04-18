@@ -1,26 +1,11 @@
-
-import styled from 'styled-components';
-
-import NxWelcome from "./nx-welcome";
-
-
-const StyledApp = styled.div`
-    // Your style here
-`;
-
+import Home from './components/Home';
+import './style.css';
 
 export function App() {
-
   return (
-      <StyledApp>
-        
-        <NxWelcome title="react-weather-app"/>
-        
-      </StyledApp>
+    <Home />
   );
-
 }
-
 
 export default App;
 
