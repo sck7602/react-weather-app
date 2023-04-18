@@ -5,7 +5,10 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "dev": "vite",
+    "build-vite": "vite build",
+    "preview": "vite preview"
   },
   "private": true,
   "dependencies": {
