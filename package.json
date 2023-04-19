@@ -2,16 +2,20 @@
   "name": "react-weather-app",
   "version": "0.0.0",
   "license": "MIT",
+  "homepage": "https://sck7602.github.io",
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
     "dev": "vite",
     "build-vite": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "private": true,
   "dependencies": {
+    "gh-pages": "^5.0.0",
     "highcharts-react-official": "^3.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
