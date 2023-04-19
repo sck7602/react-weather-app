@@ -1,8 +1,19 @@
-import '../style.css';
-import windImage from '../../assets/images/wind.svg';
-import humImage from '../../assets/images/hum.svg';
+import humImage from '../../../assets/images/hum.svg';
+import windImage from '../../../assets/images/wind.svg';
 
 const WeatherDayDetail = ({ current, selectedDay, location }: any) => {
+  const temperatureC = (min: number, max: number) =>
+    min && max && min.toFixed(0) + '°C - ' + max.toFixed(0) + '°C';
+
+  const fixedNumber = (value: number) => value && value.toFixed(0);
+
+  const convertDate = (dateString: string) =>
+    new Date(dateString).toLocaleDateString('en-US', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'short',
+    });
+
   return (
     <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 shadow-md shadow-indigo-500/50 rounded-xl mt-7 p-5 h-96 text-center max-sm:mt-5 opacity-85 hover:opacity-100">
       <div className="text-xl text-left">{location?.name}</div>
@@ -24,21 +35,17 @@ const WeatherDayDetail = ({ current, selectedDay, location }: any) => {
         ) : null}
       </div>
       <div className="mt-1 text-md">
-        {new Date(
-          selectedDay ? selectedDay.date : location?.localtime
-        )?.toLocaleDateString('en-US', {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'short',
-        })}
+        <>{convertDate(selectedDay ? selectedDay.date : location?.localtime)}</>
       </div>
       <div className="mt-1 text-4xl">
         {!selectedDay ? (
-          <>{current?.temp_c?.toFixed(0)}°C</>
+          <>{fixedNumber(current?.temp_c)}°C</>
         ) : (
           <>
-            {selectedDay?.day?.mintemp_c?.toFixed(0)}°C -{' '}
-            {selectedDay?.day?.maxtemp_c?.toFixed(0)}°C
+            {temperatureC(
+              selectedDay?.day?.mintemp_c,
+              selectedDay?.day?.maxtemp_c
+            )}
           </>
         )}
       </div>
@@ -51,10 +58,9 @@ const WeatherDayDetail = ({ current, selectedDay, location }: any) => {
         <img className="w-5 h-5 self-center" src={windImage} alt="Wind" />
         <div className="text-lg">
           Wind |{' '}
-          {(selectedDay
-            ? selectedDay.day.avgvis_km
-            : current?.wind_kph
-          )?.toFixed(0)}{' '}
+          {fixedNumber(
+            selectedDay ? selectedDay.day.avgvis_km : current?.wind_kph
+          )}{' '}
           km/h
         </div>
       </div>

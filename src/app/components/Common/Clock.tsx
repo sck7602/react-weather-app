@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
-import '../style.css';
 
-function Clock(): JSX.Element {
+const Clock = () => {
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,6 +24,6 @@ function Clock(): JSX.Element {
   };
 
   return <div ref={elementRef}></div>;
-}
+};
 
 export default Clock;

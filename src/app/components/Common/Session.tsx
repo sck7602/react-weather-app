@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
-import '../style.css';
 
-function Session(): JSX.Element {
+const Session = () => {
   const elementRef = useRef<HTMLDivElement>(null);
 
   function updateSession() {
@@ -31,6 +30,6 @@ function Session(): JSX.Element {
   }, []);
 
   return <div ref={elementRef}></div>;
-}
+};
 
 export default Session;

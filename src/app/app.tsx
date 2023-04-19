@@ -1,11 +1,8 @@
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import './style.css';
 
-export function App() {
-  return (
-    <Home />
-  );
-}
+const App = () => {
+  return <Home />;
+};
 
 export default App;
-
