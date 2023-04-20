@@ -7,9 +7,9 @@ import './style.css';
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes >
+      <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
