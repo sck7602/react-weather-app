@@ -1,5 +1,5 @@
 import { LocationWeather } from './current-weather';
-import { Current, Forecastday, Weather } from './weather';
+import { Current, Forecastday, Weather, Location } from './weather';
 
 export interface ISelectDays {
   darkTheme: boolean;

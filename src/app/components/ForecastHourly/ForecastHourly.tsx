@@ -10,6 +10,11 @@ const ForecastHourly = ({
   location,
 }: IForecastHourly) => {
   const [tempRange, setTempRange] = useState<number[]>([]);
+  const [timeList, setTimeList] = useState<string[]>([]);
+
+  useEffect(() => {
+    categoryTimes();
+  }, []);
 
   useEffect(() => {
     getTemperatureRange(forecastday, selectedIndex);
@@ -25,7 +30,7 @@ const ForecastHourly = ({
       const hours = selectedDay?.hour;
       if (hours) {
         for (let i = 0; i < hours.length; i++) {
-          tempRange.push(hours[i].temp_c!);
+          tempRange.push(Number(hours[i].temp_c));
         }
       }
     }
@@ -34,7 +39,7 @@ const ForecastHourly = ({
   };
 
   const categoryTimes = () => {
-    const timeList = [];
+    const times: string[] = [];
     for (let i = 1; i <= 24; i++) {
       if (i <= 12) {
         timeList.push(i.toString().padStart(2, '0') + ' AM');
@@ -43,7 +48,7 @@ const ForecastHourly = ({
       }
     }
 
-    return timeList;
+    setTimeList(times);
   };
 
   return (
@@ -53,7 +58,7 @@ const ForecastHourly = ({
       </div>
       <div className="mt-2 h-80 text-center">
         <HourChart
-          categoryTimes={categoryTimes}
+          categoryTimes={timeList}
           tempRange={tempRange}
           darkTheme={darkTheme}
           locationName={location.name || ''}

@@ -36,7 +36,7 @@ const DayDetail = ({ current, selectedDay, location }: IDayDetail) => {
         ) : null}
       </div>
       <div className="mt-1 text-md">
-        <>{convertDate(selectedDay ? selectedDay.date : location?.localtime)}</>
+        {convertDate(selectedDay ? selectedDay.date : location?.localtime)}
       </div>
       <div className="mt-1 text-4xl">
         {!selectedDay ? (
