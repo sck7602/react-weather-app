@@ -26,7 +26,9 @@ const SelectDays = ({
       value={selectedDays}
     >
       {days.map((item) => (
-        <option value={item}>{item} days</option>
+        <option key={item} value={item}>
+          {item} days
+        </option>
       ))}
     </select>
   );

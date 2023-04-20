@@ -75,7 +75,7 @@ export interface IDayDetail {
   location: Location;
 }
 
-export interface IWeatherAnotherCity {
+export interface IAnotherCity {
   onSelectCity: (value: string) => void;
 }
 

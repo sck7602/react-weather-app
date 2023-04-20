@@ -2,7 +2,7 @@
   "name": "react-weather-app",
   "version": "0.0.0",
   "license": "MIT",
-  "homepage": "https://sck7602.github.io",
+  "homepage": "https://sck7602.github.io/react-weather-app",
   "scripts": {
     "start": "nx serve",
     "build": "nx build",

@@ -1,11 +1,11 @@
-import { IWeatherAnotherCity } from '../../models/weather-app';
+import { IAnotherCity } from '../../models/weather-app';
 import axios, { AxiosResponse } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { API_KEY, WEATHER_URL } from '../../environments/env';
 import { LocationWeather } from '../../models/current-weather';
 import Detail from './Detail';
 
-const WeatherAnotherCity = ({ onSelectCity }: IWeatherAnotherCity) => {
+const AnotherCity = ({ onSelectCity }: IAnotherCity) => {
   const [citys, setCitys] = useState<LocationWeather[]>([]);
 
   useEffect(() => {
@@ -41,10 +41,15 @@ const WeatherAnotherCity = ({ onSelectCity }: IWeatherAnotherCity) => {
     <div>
       {citys.length &&
         citys.map((city, index) => (
-          <Detail index={index} city={city} onSelect={selectedCities} />
+          <Detail
+            key={index}
+            index={index}
+            city={city}
+            onSelect={selectedCities}
+          />
         ))}
     </div>
   );
 };
 
-export default WeatherAnotherCity;
+export default AnotherCity;

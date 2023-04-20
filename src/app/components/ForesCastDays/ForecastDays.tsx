@@ -42,6 +42,7 @@ const ForecastDays = ({ darkTheme, forecastday, selectDay }: IForecastDays) => {
           .slice(0, selectedDays)
           .map((item: Forecastday, index: number) => (
             <Day
+              key={index}
               item={item}
               index={index}
               indexDay={indexDay}

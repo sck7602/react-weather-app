@@ -30,6 +30,7 @@ const HourChart = ({
       },
       xAxis: {
         categories: categoryTimes,
+        crosshair: true,
       },
       yAxis: {
         title: {
@@ -40,7 +41,7 @@ const HourChart = ({
         },
       },
       tooltip: {
-        valueSuffix: ' °C',
+        valueSuffix: '°C',
       },
       plotOptions: {
         spline: {
