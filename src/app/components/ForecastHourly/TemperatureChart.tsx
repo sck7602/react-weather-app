@@ -1,13 +1,14 @@
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import { useEffect, useState } from 'react';
+import { IHourChart } from '../../models/weather-app';
 
 const HourChart = ({
   categoryTimes,
   tempRange,
   darkTheme,
   locationName,
-}: any) => {
+}: IHourChart) => {
   const [optionChart, setOptionChart] = useState<Highcharts.Options>({});
 
   useEffect(() => {

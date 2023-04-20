@@ -1,8 +1,7 @@
-import lightImage from '../../../assets/images/light.svg';
-import nightImage from '../../../assets/images/night.svg';
-import nightBlackImage from '../../../assets/images/night-black.svg';
+import { IChangeTheme } from '../../models/weather-app';
+import Image from '../Common/Image';
 
-const ChangeTheme = ({ darkTheme, changeTheme }: any) => {
+const ChangeTheme = ({ darkTheme, changeTheme }: IChangeTheme) => {
   function changeDarkTheme(status: boolean) {
     if (!changeTheme) {
       return;
@@ -27,7 +26,7 @@ const ChangeTheme = ({ darkTheme, changeTheme }: any) => {
             !darkTheme ? 'bg-button-night' : ''
           }`}
         >
-          <img className="w-6 mx-auto" src={lightImage} alt="Light" />
+          <img className="w-6 mx-auto" src={Image.LightImage} alt="Light" />
         </div>
       </button>
       <button
@@ -42,7 +41,7 @@ const ChangeTheme = ({ darkTheme, changeTheme }: any) => {
         >
           <img
             className="w-6 mx-auto"
-            src={darkTheme ? nightImage : nightBlackImage}
+            src={darkTheme ? Image.NightImage : Image.NightBlackImage}
             alt="Night"
           />
         </div>

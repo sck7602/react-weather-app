@@ -1,8 +1,9 @@
+import { IWelcome } from '../../models/weather-app';
 import Clock from '../Common/Clock';
 import Session from '../Common/Session';
 import ChangeTheme from '../Welcome/ChangeTheme';
 
-const Welcome = ({ darkTheme, changeTheme }: any) => {
+const Welcome = ({ darkTheme, changeTheme }: IWelcome) => {
   const changeDarkTheme = (status: boolean) => {
     changeTheme(status);
   };

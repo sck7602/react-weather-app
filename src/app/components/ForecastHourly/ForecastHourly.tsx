@@ -1,13 +1,14 @@
+import { IForecastHourly } from '../../models/weather-app';
 import { useEffect, useState } from 'react';
 import { Forecastday } from '../../models/weather';
 import HourChart from '../ForecastHourly/TemperatureChart';
 
-const ForecastHourlyComponent = ({
+const ForecastHourly = ({
   darkTheme,
   forecastday,
   selectedIndex,
   location,
-}: any) => {
+}: IForecastHourly) => {
   const [tempRange, setTempRange] = useState<number[]>([]);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const ForecastHourlyComponent = ({
   }, [darkTheme, forecastday, selectedIndex]);
 
   const getTemperatureRange = (
-    days: Forecastday[] | undefined,
+    days: Forecastday[],
     indexSelected = 0
   ): void => {
     const tempRange: number[] = [];
@@ -55,11 +56,11 @@ const ForecastHourlyComponent = ({
           categoryTimes={categoryTimes}
           tempRange={tempRange}
           darkTheme={darkTheme}
-          locationName={location.name}
+          locationName={location.name || ''}
         />
       </div>
     </>
   );
 };
 
-export default ForecastHourlyComponent;
+export default ForecastHourly;

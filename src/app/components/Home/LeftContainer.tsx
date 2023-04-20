@@ -1,14 +1,15 @@
+import { ILeftContainer } from '../../models/weather-app';
 import ForecastHourly from '../ForecastHourly/ForecastHourly';
 import ForecastDays from '../ForesCastDays/ForecastDays';
 import Welcome from '../Welcome/Welcome';
 
-const Left = ({
+const LeftContainer = ({
   darkTheme,
   changeTheme,
   weather,
   selectedIndex,
   onSelectDay,
-}: any) => {
+}: ILeftContainer) => {
   return (
     <div
       className={`shadow-lg rounded-tl-md rounded-bl-md w-2/3 p-10 max-sm:w-full max-lg:p-5 max-sm:order-last max-sm:rounded-none max-lg:w-7/12 ${
@@ -37,4 +38,4 @@ const Left = ({
   );
 };
 
-export default Left;
+export default LeftContainer;

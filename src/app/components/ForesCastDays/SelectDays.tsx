@@ -1,4 +1,10 @@
-const SelectDays = ({ darkTheme, selectedDays, onSelectedDays }: any) => {
+import { ISelectDays } from '../../models/weather-app';
+
+const SelectDays = ({
+  darkTheme,
+  selectedDays,
+  onSelectedDays,
+}: ISelectDays) => {
   const days = [5, 6, 7, 8, 9, 10];
   const handleSelect = (event: any) => {
     if (!onSelectedDays) {

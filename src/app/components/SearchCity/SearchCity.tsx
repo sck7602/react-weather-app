@@ -1,6 +1,7 @@
-import locationImage from '../../../assets/images/location.svg';
+import { ISearchCity } from '../../models/weather-app';
+import Image from '../Common/Image';
 
-const SearchCity = ({ darkTheme, onDetect, onSearch }: any) => {
+const SearchCity = ({ darkTheme, onDetect, onSearch }: ISearchCity) => {
   const onSearchCity = (event: any) => {
     const textSearch = event.target.value.trim();
 
@@ -36,7 +37,7 @@ const SearchCity = ({ darkTheme, onDetect, onSearch }: any) => {
         title="Detect location"
         onClick={() => onDetectLocation(true)}
       >
-        <img className="mx-auto" src={locationImage} alt="Location" />
+        <img className="mx-auto" src={Image.LocationImage} alt="Location" />
       </button>
     </>
   );

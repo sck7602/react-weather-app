@@ -1,8 +1,8 @@
-import humImage from '../../../assets/images/hum.svg';
-import windImage from '../../../assets/images/wind.svg';
+import { IDetail } from '../../models/weather-app';
+import Image from '../Common/Image';
 
-const Detail = ({ index, city, onSelect }: any) => {
-  const onSelectCities = (cityName: string) => {
+const Detail = ({ index, city, onSelect }: IDetail) => {
+  const onSelectCities = (cityName: string | undefined) => {
     if (!onSelect) {
       return;
     }
@@ -22,11 +22,15 @@ const Detail = ({ index, city, onSelect }: any) => {
     >
       <div className="w-1/2 text-left self-center">
         <div className="flex">
-          <img className="w-5 h-5 self-center" src={windImage} alt="Wind" />
+          <img
+            className="w-5 h-5 self-center"
+            src={Image.WindImage}
+            alt="Wind"
+          />
           <div className="text-sm">Wind | {city.current?.wind_kph}km/h</div>
         </div>
         <div className="flex">
-          <img className="w-5 h-5 self-center" src={humImage} alt="Hum" />
+          <img className="w-5 h-5 self-center" src={Image.HumImage} alt="Hum" />
           <div className="text-sm">Hum | {city.current?.humidity}%</div>
         </div>
       </div>

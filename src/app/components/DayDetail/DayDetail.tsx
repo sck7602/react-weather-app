@@ -1,13 +1,14 @@
-import humImage from '../../../assets/images/hum.svg';
-import windImage from '../../../assets/images/wind.svg';
+import { IDayDetail } from '../../models/weather-app';
+import Image from '../Common/Image';
 
-const WeatherDayDetail = ({ current, selectedDay, location }: any) => {
-  const temperatureC = (min: number, max: number) =>
+const DayDetail = ({ current, selectedDay, location }: IDayDetail) => {
+  const temperatureC = (min: number | undefined, max: number | undefined) =>
     min && max && min.toFixed(0) + '°C - ' + max.toFixed(0) + '°C';
 
-  const fixedNumber = (value: number) => value && value.toFixed(0);
+  const fixedNumber = (value: number | undefined) => value?.toFixed(0);
 
-  const convertDate = (dateString: string) =>
+  const convertDate = (dateString: string | undefined) =>
+    dateString &&
     new Date(dateString).toLocaleDateString('en-US', {
       weekday: 'long',
       day: 'numeric',
@@ -55,7 +56,7 @@ const WeatherDayDetail = ({ current, selectedDay, location }: any) => {
           : selectedDay?.day?.condition?.text}
       </div>
       <div className="flex justify-center">
-        <img className="w-5 h-5 self-center" src={windImage} alt="Wind" />
+        <img className="w-5 h-5 self-center" src={Image.WindImage} alt="Wind" />
         <div className="text-lg">
           Wind |{' '}
           {fixedNumber(
@@ -65,7 +66,11 @@ const WeatherDayDetail = ({ current, selectedDay, location }: any) => {
         </div>
       </div>
       <div className="flex justify-center">
-        <img className="w-5 h-5 self-center" src={humImage} alt="Humidity" />
+        <img
+          className="w-5 h-5 self-center"
+          src={Image.HumImage}
+          alt="Humidity"
+        />
         <div className="text-lg">
           Hum | {selectedDay ? selectedDay.day.avghumidity : current?.humidity}%
         </div>
@@ -74,4 +79,4 @@ const WeatherDayDetail = ({ current, selectedDay, location }: any) => {
   );
 };
 
-export default WeatherDayDetail;
+export default DayDetail;

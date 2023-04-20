@@ -1,9 +1,10 @@
+import { IForecastDays } from '../../models/weather-app';
 import { useState } from 'react';
 import { Forecastday } from '../../models/weather';
 import Day from './Day';
 import SelectDays from './SelectDays';
 
-const ForecastDaysComponent = ({ darkTheme, forecastday, selectDay }: any) => {
+const ForecastDays = ({ darkTheme, forecastday, selectDay }: IForecastDays) => {
   const [selectedDays, setSelectedDays] = useState(5);
   const [indexDay, setIndexDay] = useState(0);
 
@@ -53,4 +54,4 @@ const ForecastDaysComponent = ({ darkTheme, forecastday, selectDay }: any) => {
   );
 };
 
-export default ForecastDaysComponent;
+export default ForecastDays;

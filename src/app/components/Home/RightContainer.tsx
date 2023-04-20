@@ -1,9 +1,10 @@
+import { IRightContainer } from '../../models/weather-app';
 import AnotherCity from '../AnotherCity/AnotherCity';
 import DayDetail from '../DayDetail/DayDetail';
 import SearchCity from '../SearchCity/SearchCity';
 import Welcome from '../Welcome/Welcome';
 
-const Right = ({
+const RightContainer = ({
   darkTheme,
   weather,
   selectedDay,
@@ -11,7 +12,7 @@ const Right = ({
   changeTheme,
   detectLocation,
   onSearchCity,
-}: any) => {
+}: IRightContainer) => {
   return (
     <div
       className={`rounded-tr-md rounded-br-md w-1/3 p-10 max-sm:w-full max-lg:p-5 max-sm:rounded-none max-lg:w-5/12 text-white ${
@@ -40,4 +41,4 @@ const Right = ({
   );
 };
 
-export default Right;
+export default RightContainer;

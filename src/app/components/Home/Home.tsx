@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { API_KEY, WEATHER_URL } from '../../environments/env';
 import { Forecastday, Weather } from '../../models/weather';
-import '../../style.css';
 import Loading from '../Common/Loading';
 import NotFoundPage from '../Common/NotFoundPage';
-import Left from '../Home/Left';
-import Right from '../Home/Right';
+import LeftContainer from '../Home/LeftContainer';
+import RightContainer from '../Home/RightContainer';
+import '../../style.css';
 
 const Home = () => {
   const [latitude, setLatitude] = useState('');
@@ -64,9 +64,9 @@ const Home = () => {
 
   const onSearchCity = (textSearch: string) => {
     setIsLoading(true);
-
     const location = searchLocation(latitude, longitude, textSearch);
-    axiosGet(location)
+
+    axiosCallback(location)
       .then((res) => {
         handleResponse(res?.data);
       })
@@ -81,6 +81,8 @@ const Home = () => {
   };
 
   const detectLocation = (isClick = false) => {
+    setIsLoading(true);
+
     if (!isClick) {
       const locationString = localStorage.getItem('LOCATION');
       if (locationString) {
@@ -99,7 +101,6 @@ const Home = () => {
         setLongitude(String(position.coords.longitude));
 
         if (isClick) {
-          setIsLoading(true);
           getWeather();
         }
 
@@ -118,7 +119,8 @@ const Home = () => {
 
   const getWeather = (cityName = '') => {
     const location = searchLocation(latitude, longitude, cityName);
-    axiosGet(location)
+
+    axiosCallback(location)
       .then((res) => {
         handleResponse(res.data);
       })
@@ -157,6 +159,11 @@ const Home = () => {
       `${WEATHER_URL}/v1/forecast.json?key=${API_KEY}&q=${location}&days=${days}&aqi=${aqi}&alerts=${alerts}`
     );
 
+  const axiosCallback = useCallback(
+    (location: string) => axiosGet(location),
+    [weather]
+  );
+
   return (
     <div
       className={`container flex justify-center items-center m-auto text-light font-mono max-sm:p-0 md:h-screen ${
@@ -165,17 +172,17 @@ const Home = () => {
     >
       {!isFirstLoad && weather && (
         <div className="flex h-fit w-full max-sm:flex-col max-sm:overflow-auto lg:h-fit">
-          <Left
+          <LeftContainer
             darkTheme={darkTheme}
             changeTheme={changeTheme}
             weather={weather}
             selectedIndex={selectedIndex}
             onSelectDay={onSelectDay}
           />
-          <Right
+          <RightContainer
             darkTheme={darkTheme}
             weather={weather}
-            selectedDay={selectedDay}
+            selectedDay={selectedDay as Forecastday}
             onSelectCity={onSelectCity}
             changeTheme={changeTheme}
             detectLocation={detectLocation}

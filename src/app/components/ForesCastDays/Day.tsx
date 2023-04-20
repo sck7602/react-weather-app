@@ -1,4 +1,6 @@
-const Day = ({ item, index, indexDay, darkTheme, onSelect }: any) => {
+import { IDay } from '../../models/weather-app';
+
+const Day = ({ item, index, indexDay, darkTheme, onSelect }: IDay) => {
   const handleSelect = (index: number) => {
     if (!onSelect) {
       return;
@@ -6,11 +8,12 @@ const Day = ({ item, index, indexDay, darkTheme, onSelect }: any) => {
     onSelect(index);
   };
 
-  const temperatureC = (min: number, max: number) =>
+  const temperatureC = (min: number | undefined, max: number | undefined) =>
     min && max && min.toFixed(0) + '°C - ' + max.toFixed(0) + '°C';
 
-  const convertDate = (value: string) =>
+  const convertDate = (value: string | undefined) =>
     value &&
+    item?.date &&
     new Date(item.date).toLocaleDateString('en-US', {
       weekday: 'long',
       day: 'numeric',
