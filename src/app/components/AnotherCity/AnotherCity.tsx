@@ -1,8 +1,8 @@
-import { IAnotherCity } from '../../models/weather-app';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { API_KEY, WEATHER_URL } from '../../environments/env';
 import { LocationWeather } from '../../models/current-weather';
+import { IAnotherCity } from '../../models/weather-app';
+import WeatherApi from '../../services/Weather';
 import Detail from './Detail';
 
 const AnotherCity = ({ onSelectCity }: IAnotherCity) => {
@@ -22,12 +22,10 @@ const AnotherCity = ({ onSelectCity }: IAnotherCity) => {
     cityNameFirst = 'Ho Chi Minh',
     cityNameSecond = 'Da Nang'
   ) => {
-    const axiosGet = (cityName: string) =>
-      axios.get(
-        `${WEATHER_URL}/v1/current.json?key=${API_KEY}&q=${cityName}&aqi=no`
-      );
-
-    Promise.all([axiosGet(cityNameFirst), axiosGet(cityNameSecond)]).then(
+    Promise.all([
+      WeatherApi.getLocationWeather(cityNameFirst),
+      WeatherApi.getLocationWeather(cityNameSecond),
+    ]).then(
       ([reqFirst, reqSecond]: [
         AxiosResponse<LocationWeather>,
         AxiosResponse<LocationWeather>

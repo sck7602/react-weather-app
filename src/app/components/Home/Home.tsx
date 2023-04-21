@@ -1,12 +1,11 @@
-import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
-import { API_KEY, WEATHER_URL } from '../../environments/env';
+import WeatherApi from '@/app/services/Weather';
+import { useEffect, useState } from 'react';
 import { Forecastday, Weather } from '../../models/weather';
+import '../../style.css';
 import Loading from '../Common/Loading';
 import NotFoundPage from '../Common/NotFoundPage';
 import LeftContainer from '../Home/LeftContainer';
 import RightContainer from '../Home/RightContainer';
-import '../../style.css';
 
 const Home = () => {
   const [latitude, setLatitude] = useState('');
@@ -66,7 +65,7 @@ const Home = () => {
     setIsLoading(true);
     const location = searchLocation(latitude, longitude, textSearch);
 
-    axiosCallback(location)
+    WeatherApi.getWeather(location)
       .then((res) => {
         handleResponse(res?.data);
       })
@@ -120,7 +119,7 @@ const Home = () => {
   const getWeather = (cityName = '') => {
     const location = searchLocation(latitude, longitude, cityName);
 
-    axiosCallback(location)
+    WeatherApi.getWeather(location)
       .then((res) => {
         handleResponse(res.data);
       })
@@ -153,16 +152,6 @@ const Home = () => {
       setDarkTheme(themeLocal === 'DARK');
     }
   };
-
-  const axiosGet = (location: string, days = 10, aqi = 'no', alerts = 'no') =>
-    axios.get(
-      `${WEATHER_URL}/v1/forecast.json?key=${API_KEY}&q=${location}&days=${days}&aqi=${aqi}&alerts=${alerts}`
-    );
-
-  const axiosCallback = useCallback(
-    (location: string) => axiosGet(location),
-    [weather]
-  );
 
   return (
     <div
