@@ -6,7 +6,7 @@ import './style.css';
 
 const App = () => {
   return (
-    <BrowserRouter basename="/react-weather-app">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/*" element={<NotFoundPage />} />
