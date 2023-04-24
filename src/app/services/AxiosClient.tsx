@@ -8,18 +8,18 @@ const AxiosClient = axios.create({
   },
 });
 
-axios.interceptors.request.use(
-  (config) => {
-    return config;
+AxiosClient.interceptors.request.use(
+  (request) => {
+    return request;
   },
   (error) => {
     return Promise.reject(error);
   }
 );
 
-axios.interceptors.response.use(
-  (config) => {
-    return config;
+AxiosClient.interceptors.response.use(
+  (response) => {
+    return response;
   },
   (error) => {
     return Promise.reject(error);
