@@ -2,7 +2,7 @@ import { IChangeTheme } from '../../models/weather-app';
 import Image from '../Common/Image';
 
 const ChangeTheme = ({ darkTheme, changeTheme }: IChangeTheme) => {
-  function changeDarkTheme(status: boolean) {
+  const changeDarkTheme = (status: boolean) => {
     if (!changeTheme) {
       return;
     }
