@@ -1,11 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { LocationWeather, IAnotherCity } from '@/app/models';
+import { AnotherWeather, IAnotherCity } from '@/app/models';
 import WeatherApi from '@/app/services/weather';
 import Detail from './Detail';
 
 const AnotherCity = ({ onSelectCity }: IAnotherCity) => {
-  const [citys, setCitys] = useState<LocationWeather[]>([]);
+  const [citys, setCitys] = useState<AnotherWeather[]>([]);
 
   useEffect(() => {
     getWeather();
@@ -15,19 +15,19 @@ const AnotherCity = ({ onSelectCity }: IAnotherCity) => {
     onSelectCity(city);
   };
 
-  const getWeather = useCallback(() => getLocationWeather(), [citys]);
+  const getWeather = useCallback(() => getAnotherWeather(), [citys]);
 
-  const getLocationWeather = (
+  const getAnotherWeather = (
     cityNameFirst = 'Ho Chi Minh',
     cityNameSecond = 'Da Nang'
   ) => {
     Promise.all([
-      WeatherApi.getLocationWeather(cityNameFirst),
-      WeatherApi.getLocationWeather(cityNameSecond),
+      WeatherApi.getAnotherWeather(cityNameFirst),
+      WeatherApi.getAnotherWeather(cityNameSecond),
     ]).then(
       ([reqFirst, reqSecond]: [
-        AxiosResponse<LocationWeather>,
-        AxiosResponse<LocationWeather>
+        AxiosResponse<AnotherWeather>,
+        AxiosResponse<AnotherWeather>
       ]) => {
         setCitys([reqFirst?.data, reqSecond?.data]);
       }

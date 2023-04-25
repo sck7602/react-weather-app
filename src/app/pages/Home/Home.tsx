@@ -66,7 +66,7 @@ const Home = () => {
     setIsLoading(true);
     const location = searchLocation(latitude, longitude, textSearch);
 
-    WeatherApi.getWeather(location)
+    WeatherApi.getCurrentWeather(location)
       .then((res) => {
         handleResponse(res?.data);
       })
@@ -120,7 +120,7 @@ const Home = () => {
   const getWeather = (cityName = '') => {
     const location = searchLocation(latitude, longitude, cityName);
 
-    WeatherApi.getWeather(location)
+    WeatherApi.getCurrentWeather(location)
       .then((res) => {
         handleResponse(res.data);
       })

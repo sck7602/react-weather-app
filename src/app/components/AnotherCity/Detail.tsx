@@ -39,8 +39,8 @@ const Detail = ({ index, city, onSelect }: IDetail) => {
         <div className="flex w-full justify-end">
           <img
             className="w-10 h-10 self-center"
-            src={city.current?.condition.icon}
-            alt={city.current?.condition.text}
+            src={city.current?.condition?.icon}
+            alt={city.current?.condition?.text}
           />
           <div className="text-lg self-center">{city.current?.temp_c}°C</div>
         </div>
