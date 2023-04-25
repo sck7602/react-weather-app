@@ -1,4 +1,4 @@
-import { ISelectDays } from '../../models/weather-app';
+import { ISelectDays } from '@/app/models';
 
 const SelectDays = ({
   darkTheme,

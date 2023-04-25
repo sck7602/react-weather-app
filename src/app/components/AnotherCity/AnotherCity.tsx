@@ -1,8 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { LocationWeather } from '../../models/current-weather';
-import { IAnotherCity } from '../../models/weather-app';
-import WeatherApi from '../../services/Weather';
+import { LocationWeather, IAnotherCity } from '@/app/models';
+import WeatherApi from '@/app/services/weather';
 import Detail from './Detail';
 
 const AnotherCity = ({ onSelectCity }: IAnotherCity) => {

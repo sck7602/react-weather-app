@@ -1,11 +1,12 @@
-import WeatherApi from '@/app/services/Weather';
+import WeatherApi from '@/app/services/weather';
 import { useEffect, useState } from 'react';
-import { Forecastday, Weather } from '../../models/weather';
-import '../../style.css';
-import Loading from '../Common/Loading';
-import NotFoundPage from '../Common/NotFoundPage';
-import LeftContainer from '../Home/LeftContainer';
-import RightContainer from '../Home/RightContainer';
+import { Forecastday, Weather } from '@/app/models/weather';
+import LeftContainer from '@/app/components/Container/LeftContainer';
+import RightContainer from '@/app/components/Container/RightContainer';
+import NotFoundPage from '@/app/components/Common/NotFoundPage';
+import Loading from '@/app/components/Common/Loading';
+import ThemeContext from '@/app/store/theme-context';
+import '@/app/style.css';
 
 const Home = () => {
   const [latitude, setLatitude] = useState('');
@@ -154,34 +155,36 @@ const Home = () => {
   };
 
   return (
-    <div
-      className={`container flex justify-center items-center m-auto text-light font-mono max-sm:p-0 md:h-screen ${
-        darkTheme ? 'text-white' : 'text-black'
-      }`}
-    >
-      {!isFirstLoad && weather && (
-        <div className="flex h-fit w-full max-sm:flex-col max-sm:overflow-auto lg:h-fit">
-          <LeftContainer
-            darkTheme={darkTheme}
-            changeTheme={changeTheme}
-            weather={weather}
-            selectedIndex={selectedIndex}
-            onSelectDay={onSelectDay}
-          />
-          <RightContainer
-            darkTheme={darkTheme}
-            weather={weather}
-            selectedDay={selectedDay as Forecastday}
-            onSelectCity={onSelectCity}
-            changeTheme={changeTheme}
-            detectLocation={detectLocation}
-            onSearchCity={onSearchCity}
-          />
-        </div>
-      )}
-      {!isFirstLoad && !weather && <NotFoundPage />}
-      {isLoading && <Loading />}
-    </div>
+    <ThemeContext.Provider value={{ darkTheme }}>
+      <div
+        className={`container flex justify-center items-center m-auto text-light font-mono max-sm:p-0 md:h-screen ${
+          darkTheme ? 'text-white' : 'text-black'
+        }`}
+      >
+        {!isFirstLoad && weather && (
+          <div className="flex h-fit w-full max-sm:flex-col max-sm:overflow-auto lg:h-fit">
+            <LeftContainer
+              darkTheme={darkTheme}
+              changeTheme={changeTheme}
+              weather={weather}
+              selectedIndex={selectedIndex}
+              onSelectDay={onSelectDay}
+            />
+            <RightContainer
+              darkTheme={darkTheme}
+              weather={weather}
+              selectedDay={selectedDay as Forecastday}
+              onSelectCity={onSelectCity}
+              changeTheme={changeTheme}
+              detectLocation={detectLocation}
+              onSearchCity={onSearchCity}
+            />
+          </div>
+        )}
+        {!isFirstLoad && !weather && <NotFoundPage />}
+        {isLoading && <Loading />}
+      </div>
+    </ThemeContext.Provider>
   );
 };
 

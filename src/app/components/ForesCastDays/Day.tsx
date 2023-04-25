@@ -1,4 +1,4 @@
-import { IDay } from '../../models/weather-app';
+import { IDay } from '@/app/models';
 
 const Day = ({ item, index, indexDay, darkTheme, onSelect }: IDay) => {
   const handleSelect = (index: number) => {

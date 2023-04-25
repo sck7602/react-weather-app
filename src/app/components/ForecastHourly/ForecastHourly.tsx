@@ -1,16 +1,16 @@
-import { IForecastHourly } from '../../models/weather-app';
-import { useEffect, useState } from 'react';
-import { Forecastday } from '../../models/weather';
+import { IForecastHourly, Forecastday } from '@/app/models';
+import { useContext, useEffect, useState } from 'react';
 import HourChart from '../ForecastHourly/TemperatureChart';
+import ThemeContext from '@/app/store/theme-context';
 
 const ForecastHourly = ({
-  darkTheme,
   forecastday,
   selectedIndex,
   location,
 }: IForecastHourly) => {
   const [tempRange, setTempRange] = useState<number[]>([]);
   const [timeList, setTimeList] = useState<string[]>([]);
+  const themeContext = useContext(ThemeContext);
 
   useEffect(() => {
     categoryTimes();
@@ -18,7 +18,7 @@ const ForecastHourly = ({
 
   useEffect(() => {
     getTemperatureRange(forecastday, selectedIndex);
-  }, [darkTheme, forecastday, selectedIndex]);
+  }, [themeContext.darkTheme, forecastday, selectedIndex]);
 
   const getTemperatureRange = (
     days: Forecastday[],
@@ -53,14 +53,18 @@ const ForecastHourly = ({
 
   return (
     <>
-      <div className={`text-xl mt-5 ${!darkTheme && 'text-blue-light'}`}>
+      <div
+        className={`text-xl mt-5 ${
+          !themeContext.darkTheme && 'text-blue-light'
+        }`}
+      >
         Hourly Forecast
       </div>
       <div className="mt-2 h-80 text-center">
         <HourChart
           categoryTimes={timeList}
           tempRange={tempRange}
-          darkTheme={darkTheme}
+          darkTheme={themeContext.darkTheme}
           locationName={location.name || ''}
         />
       </div>

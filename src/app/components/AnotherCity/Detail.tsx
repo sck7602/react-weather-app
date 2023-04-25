@@ -1,5 +1,5 @@
-import { IDetail } from '../../models/weather-app';
-import Image from '../Common/Image';
+import { IDetail } from '@/app/models/weather-app';
+import Image from '@/app/models/image';
 
 const Detail = ({ index, city, onSelect }: IDetail) => {
   const onSelectCities = (cityName: string | undefined) => {

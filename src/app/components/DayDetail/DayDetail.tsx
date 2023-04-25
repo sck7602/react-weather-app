@@ -1,5 +1,5 @@
-import { IDayDetail } from '../../models/weather-app';
-import Image from '../Common/Image';
+import { IDayDetail } from '@/app/models';
+import Image from '@/app/models/image';
 
 const DayDetail = ({ current, selectedDay, location }: IDayDetail) => {
   const temperatureC = (min: number | undefined, max: number | undefined) =>

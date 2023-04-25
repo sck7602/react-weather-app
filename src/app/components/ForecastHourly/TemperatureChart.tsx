@@ -1,7 +1,7 @@
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import { useEffect, useState } from 'react';
-import { IHourChart } from '../../models/weather-app';
+import { IHourChart } from '@/app/models';
 
 const HourChart = ({
   categoryTimes,

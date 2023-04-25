@@ -1,9 +1,12 @@
-import { IWelcome } from '../../models/weather-app';
+import { IWelcome } from '@/app/models';
+import ThemeContext from '@/app/store/theme-context';
+import { useContext } from 'react';
 import Clock from '../Common/Clock';
 import Session from '../Common/Session';
 import ChangeTheme from '../Welcome/ChangeTheme';
 
-const Welcome = ({ darkTheme, changeTheme }: IWelcome) => {
+const Welcome = ({ changeTheme }: IWelcome) => {
+  const themeContext = useContext(ThemeContext);
   const changeDarkTheme = (status: boolean) => {
     changeTheme(status);
   };
@@ -21,7 +24,7 @@ const Welcome = ({ darkTheme, changeTheme }: IWelcome) => {
       <div className="w-full">
         <div
           className={`text-4xl font-semibold max-lg:hidden ${
-            !darkTheme && 'text-blue-light'
+            !themeContext.darkTheme && 'text-blue-light'
           }`}
         >
           <Clock />
@@ -31,13 +34,16 @@ const Welcome = ({ darkTheme, changeTheme }: IWelcome) => {
         </div>
         <div
           className={`text-2xl font-semibold mt-3 max-lg:mt-0 ${
-            !darkTheme && 'text-blue-light'
+            !themeContext.darkTheme && 'text-blue-light'
           }`}
         >
           <Session />
         </div>
       </div>
-      <ChangeTheme darkTheme={darkTheme} changeTheme={changeDarkTheme} />
+      <ChangeTheme
+        darkTheme={themeContext.darkTheme}
+        changeTheme={changeDarkTheme}
+      />
     </div>
   );
 };

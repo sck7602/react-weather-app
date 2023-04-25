@@ -1,4 +1,4 @@
-import { ILeftContainer } from '../../models/weather-app';
+import { ILeftContainer } from '@/app/models';
 import ForecastHourly from '../ForecastHourly/ForecastHourly';
 import ForecastDays from '../ForesCastDays/ForecastDays';
 import Welcome from '../Welcome/Welcome';
@@ -17,19 +17,17 @@ const LeftContainer = ({
       }`}
     >
       <div className="max-sm:hidden">
-        <Welcome darkTheme={darkTheme} changeTheme={changeTheme} />
+        <Welcome changeTheme={changeTheme} />
       </div>
       {weather?.forecast?.forecastday && weather?.location && (
         <ForecastHourly
           location={weather.location}
           forecastday={weather.forecast.forecastday}
           selectedIndex={selectedIndex}
-          darkTheme={darkTheme}
         />
       )}
       {weather?.forecast?.forecastday && (
         <ForecastDays
-          darkTheme={darkTheme}
           forecastday={weather.forecast.forecastday}
           selectDay={onSelectDay}
         />

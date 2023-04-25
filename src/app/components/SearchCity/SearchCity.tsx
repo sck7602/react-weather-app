@@ -1,7 +1,10 @@
-import { ISearchCity } from '../../models/weather-app';
-import Image from '../Common/Image';
+import { ISearchCity } from '@/app/models';
+import ThemeContext from '@/app/store/theme-context';
+import { useContext } from 'react';
+import Image from '@/app/models/image';
 
-const SearchCity = ({ darkTheme, onDetect, onSearch }: ISearchCity) => {
+const SearchCity = ({ onDetect, onSearch }: ISearchCity) => {
+  const themeContext = useContext(ThemeContext);
   const onSearchCity = (event: any) => {
     const textSearch = event.target.value.trim();
 
@@ -23,7 +26,7 @@ const SearchCity = ({ darkTheme, onDetect, onSearch }: ISearchCity) => {
     <>
       <input
         className={`shadow-sm w-full h-10 pl-2 outline-1 outline-indigo-600 rounded-lg hover:shadow-md hover:shadow-indigo-800 hover:text-md duration-300 ${
-          darkTheme
+          themeContext.darkTheme
             ? 'bg-search-city text-white'
             : 'bg-search-city-light text-black'
         }`}

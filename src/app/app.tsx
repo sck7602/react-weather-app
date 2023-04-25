@@ -1,8 +1,7 @@
-import Home from './components/Home/Home';
-import NotFoundPage from './components/Common/NotFoundPage';
+import NotFoundPage from '@/app/components/Common/NotFoundPage';
+import Home from '@/app/pages/Home/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import './style.css';
+import '@/app/style.css';
 
 const App = () => {
   return (

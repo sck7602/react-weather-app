@@ -1,5 +1,5 @@
-import { API_KEY } from '../environments/env';
-import AxiosClient from './AxiosClient';
+import { API_KEY } from '@/app/environments/env';
+import AxiosClient from './axios-client';
 
 const WeatherApi = {
   getWeather(location: string, days = 10, aqi = 'no', alerts = 'no') {

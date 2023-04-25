@@ -1,12 +1,13 @@
-import { IForecastDays } from '../../models/weather-app';
-import { useState } from 'react';
-import { Forecastday } from '../../models/weather';
+import { IForecastDays, Forecastday } from '@/app/models';
+import { useContext, useState } from 'react';
 import Day from './Day';
 import SelectDays from './SelectDays';
+import ThemeContext from '@/app/store/theme-context';
 
-const ForecastDays = ({ darkTheme, forecastday, selectDay }: IForecastDays) => {
+const ForecastDays = ({ forecastday, selectDay }: IForecastDays) => {
   const [selectedDays, setSelectedDays] = useState(5);
   const [indexDay, setIndexDay] = useState(0);
+  const themeContext = useContext(ThemeContext);
 
   const handleSelectDay = (value: number) => {
     setSelectedDays(value);
@@ -21,17 +22,21 @@ const ForecastDays = ({ darkTheme, forecastday, selectDay }: IForecastDays) => {
     <>
       <div className="flex justify-between mt-5">
         <div
-          className={`text-xl self-center ${!darkTheme && 'text-blue-light'}`}
+          className={`text-xl self-center ${
+            !themeContext.darkTheme && 'text-blue-light'
+          }`}
         >
           {selectedDays} Days Forecast
         </div>
         <div
           className={`hover:shadow-md ${
-            darkTheme ? 'hover:shadow-indigo-800' : 'hover:shadow-indigo-300'
+            themeContext.darkTheme
+              ? 'hover:shadow-indigo-800'
+              : 'hover:shadow-indigo-300'
           }`}
         >
           <SelectDays
-            darkTheme={darkTheme}
+            darkTheme={themeContext.darkTheme}
             selectedDays={selectedDays}
             onSelectedDays={handleSelectDay}
           />
@@ -46,7 +51,7 @@ const ForecastDays = ({ darkTheme, forecastday, selectDay }: IForecastDays) => {
               item={item}
               index={index}
               indexDay={indexDay}
-              darkTheme={darkTheme}
+              darkTheme={themeContext.darkTheme}
               onSelect={onSelect}
             />
           ))}

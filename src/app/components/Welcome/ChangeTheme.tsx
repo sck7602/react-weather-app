@@ -1,5 +1,5 @@
-import { IChangeTheme } from '../../models/weather-app';
-import Image from '../Common/Image';
+import { IChangeTheme } from '@/app/models';
+import Image from '@/app/models/image';
 
 const ChangeTheme = ({ darkTheme, changeTheme }: IChangeTheme) => {
   const changeDarkTheme = (status: boolean) => {
@@ -8,7 +8,7 @@ const ChangeTheme = ({ darkTheme, changeTheme }: IChangeTheme) => {
     }
 
     changeTheme(status);
-  }
+  };
 
   return (
     <div

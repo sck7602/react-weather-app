@@ -1,5 +1,6 @@
-import { LocationWeather } from './current-weather';
-import { Current, Forecastday, Weather, Location } from './weather';
+import { AnotherWeather } from './another-weather';
+import { CurrentWeather, Forecastday } from './current-weather';
+import { Current, Location } from './weather';
 
 export interface ISelectDays {
   darkTheme: boolean;
@@ -9,7 +10,7 @@ export interface ISelectDays {
 
 export interface ILeftContainer {
   darkTheme: boolean;
-  weather: Weather;
+  weather: CurrentWeather;
   selectedIndex: number;
   changeTheme: (value: boolean) => void;
   onSelectDay: (value: number) => void;
@@ -17,7 +18,7 @@ export interface ILeftContainer {
 
 export interface IRightContainer {
   darkTheme: boolean;
-  weather: Weather;
+  weather: CurrentWeather;
   selectedDay: Forecastday;
   onSelectCity: (value: string) => void;
   changeTheme: (value: boolean) => void;
@@ -26,7 +27,6 @@ export interface IRightContainer {
 }
 
 export interface ISearchCity {
-  darkTheme: boolean;
   onDetect: (value: boolean) => void;
   onSearch: (value: string) => void;
 }
@@ -37,12 +37,10 @@ export interface IChangeTheme {
 }
 
 export interface IWelcome {
-  darkTheme: boolean;
   changeTheme: (value: boolean) => void;
 }
 
 export interface IForecastDays {
-  darkTheme: boolean;
   forecastday: Forecastday[];
   selectDay: (value: number) => void;
 }
@@ -63,7 +61,6 @@ export interface IHourChart {
 }
 
 export interface IForecastHourly {
-  darkTheme: boolean;
   forecastday: Forecastday[];
   selectedIndex: number;
   location: Location;
@@ -81,6 +78,6 @@ export interface IAnotherCity {
 
 export interface IDetail {
   index: number;
-  city: LocationWeather;
+  city: AnotherWeather;
   onSelect: (value: string | undefined) => void;
 }
