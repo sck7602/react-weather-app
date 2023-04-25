@@ -6,6 +6,8 @@ import Detail from './Detail';
 
 const AnotherCity = ({ onSelectCity }: IAnotherCity) => {
   const [citys, setCitys] = useState<AnotherWeather[]>([]);
+  const [firstCity, _setFirstCity] = useState<string>('Ho Chi Minh');
+  const [lastCity, _setLastCity] = useState<string>('Da Nang');
 
   useEffect(() => {
     getWeather();
@@ -15,15 +17,15 @@ const AnotherCity = ({ onSelectCity }: IAnotherCity) => {
     onSelectCity(city);
   };
 
-  const getWeather = useCallback(() => getAnotherWeather(), [citys]);
+  const getWeather = useCallback(
+    () => getAnotherWeather(firstCity, lastCity),
+    [firstCity, lastCity]
+  );
 
-  const getAnotherWeather = (
-    cityNameFirst = 'Ho Chi Minh',
-    cityNameSecond = 'Da Nang'
-  ) => {
+  const getAnotherWeather = (firstCityName: string, lastCityName: string) => {
     Promise.all([
-      WeatherApi.getAnotherWeather(cityNameFirst),
-      WeatherApi.getAnotherWeather(cityNameSecond),
+      WeatherApi.getAnotherWeather(firstCityName),
+      WeatherApi.getAnotherWeather(lastCityName),
     ]).then(
       ([reqFirst, reqSecond]: [
         AxiosResponse<AnotherWeather>,
