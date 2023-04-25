@@ -1,6 +1,6 @@
 import WeatherApi from '@/app/services/weather';
 import { useEffect, useState } from 'react';
-import { Forecastday, Weather } from '@/app/models/weather';
+import { Forecastday, CurrentWeather } from '@/app/models';
 import LeftContainer from '@/app/components/Container/LeftContainer';
 import RightContainer from '@/app/components/Container/RightContainer';
 import NotFoundPage from '@/app/components/Common/NotFoundPage';
@@ -13,7 +13,7 @@ const Home = () => {
   const [longitude, setLongitude] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [weather, setWeather] = useState<Weather>();
+  const [weather, setWeather] = useState<CurrentWeather>();
   const [selectedDay, setSelectedDay] = useState<Forecastday>();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [darkTheme, setDarkTheme] = useState(true);
@@ -130,7 +130,7 @@ const Home = () => {
       });
   };
 
-  const handleResponse = (res: Weather) => {
+  const handleResponse = (res: CurrentWeather) => {
     if (res) {
       setWeather(res);
       if (res.location) {
